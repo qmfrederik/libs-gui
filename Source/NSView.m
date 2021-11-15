@@ -723,7 +723,7 @@ GSSetDragTypes(NSView* obj, NSArray *types)
 		}
 	      if (GSIArrayItemAtIndex(nKV(tmp), 0).obj == self)
 		{
-		  GSIArraySetItemAtIndex(nKV(tmp), (GSIArrayItem)nil, 0);
+		  GSIArraySetItemAtIndex(nKV(tmp), (GSIArrayItem)(id)nil, 0);
 		}
 	    }
 	}
@@ -755,7 +755,7 @@ GSSetDragTypes(NSView* obj, NSArray *types)
 		}
 	      if (GSIArrayItemAtIndex(pKV(tmp), 0).obj == self)
 		{
-		  GSIArraySetItemAtIndex(pKV(tmp), (GSIArrayItem)nil, 0);
+		  GSIArraySetItemAtIndex(pKV(tmp), (GSIArrayItem)(id)nil, 0);
 		}
 	    }
 	}
@@ -3674,13 +3674,13 @@ static NSView* findByTag(NSView *view, NSInteger aTag, NSUInteger *level)
 		    }
 		  if (GSIArrayItemAtIndex(pKV(tmp), 0).obj == self)
 		    {
-		      GSIArraySetItemAtIndex(pKV(tmp), (GSIArrayItem)nil, 0);
+		      GSIArraySetItemAtIndex(pKV(tmp), (GSIArrayItem)(id)nil, 0);
 		    }
 		}
 	      /*
 	       * Clear link to the next key view.
 	       */
-	      GSIArraySetItemAtIndex(nKV(self), (GSIArrayItem)nil, 0);
+	      GSIArraySetItemAtIndex(nKV(self), (GSIArrayItem)(id)nil, 0);
 	    }
 	}
       return;
@@ -3694,7 +3694,7 @@ static NSView* findByTag(NSView *view, NSInteger aTag, NSUInteger *level)
        */
       _nextKeyView = NSZoneMalloc(NSDefaultMallocZone(), sizeof(GSIArray_t));
       GSIArrayInitWithZoneAndCapacity(nKV(self), NSDefaultMallocZone(), 1);
-      GSIArrayAddItem(nKV(self), (GSIArrayItem)nil);
+      GSIArrayAddItem(nKV(self), (GSIArrayItem)(id)nil);
     }
   else
     {
@@ -3714,7 +3714,7 @@ static NSView* findByTag(NSView *view, NSInteger aTag, NSUInteger *level)
        */
       aView->_previousKeyView = NSZoneMalloc(NSDefaultMallocZone(), sizeof(GSIArray_t));
       GSIArrayInitWithZoneAndCapacity(pKV(aView), NSDefaultMallocZone(), 1);
-      GSIArrayAddItem(pKV(aView), (GSIArrayItem)nil);
+      GSIArrayAddItem(pKV(aView), (GSIArrayItem)(id)nil);
     }
 
   /*
@@ -3737,7 +3737,7 @@ static NSView* findByTag(NSView *view, NSInteger aTag, NSUInteger *level)
        */
       if (GSIArrayItemAtIndex(nKV(tmp), 0).obj == aView)
 	{
-	  GSIArrayInsertItem(pKV(aView), (GSIArrayItem)nil, 0);
+	  GSIArrayInsertItem(pKV(aView), (GSIArrayItem)(id)nil, 0);
 	}
     }
 
@@ -3762,7 +3762,7 @@ static NSView* findByTag(NSView *view, NSInteger aTag, NSUInteger *level)
 	}
       if (GSIArrayItemAtIndex(pKV(tmp), 0).obj == self)
 	{
-	  GSIArraySetItemAtIndex(pKV(tmp), (GSIArrayItem)nil, 0);
+	  GSIArraySetItemAtIndex(pKV(tmp), (GSIArrayItem)(id)nil, 0);
 	}
     }
 
