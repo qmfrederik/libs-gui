@@ -61,9 +61,7 @@
 #import "GSGuiPrivate.h"
 #import "GNUstepGUI/GSTheme.h"
 
-#if defined(_WIN32)
-#import "objc/blocks_runtime.h"
-#endif
+#import <GNUstepBase/GSBlocks.h>
 
 #define _SAVE_PANEL_X_PAD	5
 #define _SAVE_PANEL_Y_PAD	4
