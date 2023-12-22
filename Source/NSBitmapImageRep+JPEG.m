@@ -65,6 +65,15 @@
 #include <jpeglib.h>
 #include <setjmp.h>
 
+#if defined(__clang__) && defined(_WIN32)
+// This object file does not contain any (unique) symbol names, which would lead to conflicts in weak symbol references when
+// compiling with clang for the Windows platform.  See https://reviews.llvm.org/D75989 and https://maskray.me/blog/2021-04-25-weak-symbol
+@implementation NSBitmapImageRepJpeg
+{
+
+}
+@end
+#endif
 
 /* -----------------------------------------------------------
    The following functions are for interacting with the

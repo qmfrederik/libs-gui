@@ -41,6 +41,16 @@
 
 #define ICNS_HEADER "icns"
 
+#if defined(__clang__) && defined(_WIN32)
+// This object file does not contain any (unique) symbol names, which would lead to conflicts in weak symbol references when
+// compiling with clang for the Windows platform.  See https://reviews.llvm.org/D75989 and https://maskray.me/blog/2021-04-25-weak-symbol
+@implementation NSBitmapImageRepIcns
+{
+
+}
+@end
+#endif
+
 #if HAVE_LIBICNS
 
 #include <icns.h>
