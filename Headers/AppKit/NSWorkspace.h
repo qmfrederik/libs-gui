@@ -34,6 +34,11 @@
 #import <Foundation/NSGeometry.h>
 #import <AppKit/AppKitDefines.h>
 
+#if __has_include("Foundation/NSAppleEventDescriptor.h")
+#define HAVE_NSAppleEventDescriptor
+#import <Foundation/NSAppleEventDescriptor.h>
+#endif
+
 @class NSString;
 @class NSNumber;
 @class NSArray;
@@ -165,8 +170,11 @@ typedef NSUInteger NSWorkspaceIconCreationOptions;
 
 #if OS_API_VERSION(MAC_OS_X_VERSION_10_3, GS_API_LATEST)
 - (NSString *) absolutePathForAppBundleWithIdentifier: (NSString *)bundleIdentifier;
-// TODO: implement NSAppleEventDescriptor in gnustep-base
+
+// libs-base 1.27 and later include NSAppleEventDescriptor
+#ifndef HAVE_NSAppleEventDescriptor
 typedef void NSAppleEventDescriptor;
+#endif
 
 - (BOOL) launchAppWithBundleIdentifier: (NSString *)bundleIdentifier
 			       options: (NSWorkspaceLaunchOptions)options 
