@@ -70,6 +70,12 @@
 #import "GSGuiPrivate.h"
 #import "AppKit/NSTextFieldCell.h"
 #import "AppKit/NSSearchFieldCell.h"
+
+// Use NSAppleEventDescriptor as a proxy for detecting the Eggplant fork of libs-base
+#if !__has_include("Foundation/NSAppleEventDescriptor.h")
+#define HAVE_NSCellUndoManager
+#endif
+
 static Class colorClass;
 static Class cellClass;
 static Class fontClass;
@@ -2351,6 +2357,7 @@ static NSColor *dtxtCol;
   _cell.in_editing = YES;
 
   // TESTPLANT-MAL-12282916: Paul Landers added this code...need to keep it...
+#ifdef HAVE_NSCellUndoManager
   if ([textObject isKindOfClass:[NSTextView class]])
     {
 	  NSCellUndoManager * undoManager = [[NSCellUndoManager alloc] init];
@@ -2359,7 +2366,7 @@ static NSColor *dtxtCol;
 	  [undoManager release];
 	  [(NSTextView *)textObject setAllowsUndo:YES];
     }
-
+#endif
 
 #if 1
   // Testplant-MAL-2015-06-20: merging removal causes focus ring issues...
